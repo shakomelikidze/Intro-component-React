@@ -116,7 +116,7 @@ function App() {
                   textAlign: 'right',
                   marginBottom: '10px'
                 }}>
-                Email cannot be empty
+                Looks like this is not an email
               </p>
             } 
           </form>
