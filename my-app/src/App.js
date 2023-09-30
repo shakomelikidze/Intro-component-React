@@ -61,6 +61,12 @@ function App() {
 
           {/* Claim button */}
           <button className='claim-btn'>CLAIM YOUR FREE TRIAL</button>
+          {/* Terms and Services */}
+          <p className='terms-and-services'>
+            By clicking the button, you are 
+            agreeing to our 
+              <b className='orange-bold-txt'> Terms and Services</b>
+          </p>
         </div>
       </section>
     </>

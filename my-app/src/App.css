@@ -19,6 +19,7 @@ body {
 
 #root {
   max-width: 600px;
+  padding-bottom: 60px;
 }
 
 header {
@@ -118,6 +119,19 @@ input {
   transition: 0.2s;
 }
 
+.terms-and-services {
+  margin-top: 8px;
+  color: #BAB7D4;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 26px; 
+  }
+
+.orange-bold-txt {
+  color: #FF7979;
+}
+
 
 
 @media screen and (min-width: 1000px) {
@@ -143,7 +157,26 @@ input {
     align-items: flex-start;
   }
 
+  h1 {
+    text-align: left;
+    color: #FFF;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 55px;
+    letter-spacing: -0.521px;
+  }
+
   h4 {
     text-align: left;
   }
+
+  section {
+    min-width: 540px;
+    margin-left: 19px;
+  }
+
+  .purple-div {
+    height: 60px;
+  }
+
 }
