@@ -4,26 +4,29 @@ import { useState } from 'react';
 
 function App() {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [isEmpty, setIsEmpty] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleInputChange = (e) => {
-    setFirstName(e.target.value);
-    setIsEmpty(false); // Reset isEmpty when the input changes
+  const handleInputChange = (e, setInput) => {
+    setInput(e.target.value);
   };
-  const handleSubmit = (e) => {
-    if (firstName.trim() === '') {
-      setIsEmpty(true);
+
+  const handleSubmit = () => {
+    if (!firstName || !lastName || !email || !password) {
+        alert('Please fill in all fields.');
+      } else if (!isValidEmail(email)) {
+        alert('Please enter a valid email address.');
+      } else {
+        alert('Form submitted successfully!');
+      }
     }
-    if (lastName.trim() === '') {
-      setIsEmpty(true);
-    }
-  };
-  const handleOtherButtonClick = () => {
-    handleSubmit(); // Trigger form submission logic
+
+  const isValidEmail = (email) => {
+    // Basic email validation using a regular expression
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // return emailRegex.test(email);
   };
 
   return (
@@ -54,23 +57,9 @@ function App() {
               type='text'
               placeholder='First Name'
               value={firstName}
-              onChange={handleInputChange}
-              style={{ borderColor: isEmpty ? 'red' : 'initial' }}
-            />
-            {isEmpty && 
-              <p style={
-                { 
-                  color: 'red', 
-                  marginTop: '-12px',
-                  fontSize: '11px',
-                  fontStyle: 'italic',
-                  color: '#FF7979',
-                  textAlign: 'right',
-                  marginBottom: '10px'
-                }}>
-                First Name cannot be empty
-              </p>
-            } 
+              onChange={(e) => handleInputChange(e, setFirstName)}
+              style={firstName ? { border: '1px solid red' } : {}}
+              />
           </form>
           {/* Last name */}
           <form onSubmit={handleSubmit}>
@@ -78,23 +67,9 @@ function App() {
               type='text'
               placeholder='Last Name'
               value={lastName}
-              onChange={handleInputChange}
-              style={{ borderColor: isEmpty ? 'red' : 'initial' }}
-            />
-            {isEmpty && 
-              <p style={
-                { 
-                  color: 'red', 
-                  marginTop: '-12px',
-                  fontSize: '11px',
-                  fontStyle: 'italic',
-                  color: '#FF7979',
-                  textAlign: 'right',
-                  marginBottom: '10px'
-                }}>
-                Last Name cannot be empty
-              </p>
-            } 
+              onChange={(e) => handleInputChange(e, setLastName)}
+              style={lastName ? { border: '1px solid red' } : {}}
+              />
           </form>
           {/* Email */}
           <form onSubmit={handleSubmit}>
@@ -102,23 +77,9 @@ function App() {
               type='text'
               placeholder='Email'
               value={email}
-              onChange={handleInputChange}
-              style={{ borderColor: isEmpty ? 'red' : 'initial' }}
-            />
-            {isEmpty && 
-              <p style={
-                { 
-                  color: 'red', 
-                  marginTop: '-12px',
-                  fontSize: '11px',
-                  fontStyle: 'italic',
-                  color: '#FF7979',
-                  textAlign: 'right',
-                  marginBottom: '10px'
-                }}>
-                Looks like this is not an email
-              </p>
-            } 
+              onChange={(e) => handleInputChange(e, setEmail)}
+              style={email ? { border: '1px solid red' } : {}}
+              />
           </form>
           {/* Password */}
           <form onSubmit={handleSubmit}>
@@ -126,27 +87,13 @@ function App() {
               type='text'
               placeholder='Password'
               value={password}
-              onChange={handleInputChange}
-              style={{ borderColor: isEmpty ? 'red' : 'initial' }}
-            />
-            {isEmpty && 
-              <p style={
-                { 
-                  color: 'red', 
-                  marginTop: '-12px',
-                  fontSize: '11px',
-                  fontStyle: 'italic',
-                  color: '#FF7979',
-                  textAlign: 'right',
-                  marginBottom: '10px'
-                }}>
-                Password cannot be empty
-              </p>
-            } 
+              onChange={(e) => handleInputChange(e, setPassword)}
+              style={password ? { border: '1px solid red' } : {}}
+              />
           </form>
 
           {/* Claim button */}
-          <button onClick={handleOtherButtonClick} className='claim-btn'>CLAIM YOUR FREE TRIAL</button>
+          <button onClick={handleSubmit} className='claim-btn'>CLAIM YOUR FREE TRIAL</button>
           {/* Terms and Services */}
           <p className='terms-and-services'>
             By clicking the button, you are 
@@ -157,6 +104,7 @@ function App() {
       </section>
     </>
   );
-}
+};
+
 
 export default App;
