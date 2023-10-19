@@ -22,14 +22,10 @@ export default function Inputs() {
     } else {
       setIsValidEmail(false);
     }
-    // 
-    if (firstName.trim() === '') {
-      // Input is empty, set inputError to true
+    if (firstName === '') {
       setInputError(true);
     } else {
-      // Input is not empty, reset inputError to false
       setInputError(false);
-      // Handle form submission or any other action here
     }
   };
 
@@ -40,21 +36,28 @@ export default function Inputs() {
       placeholder='First Name'
       value={firstName}
       onChange={(e) => setFirstName(e.target.value)}
-      style={{ borderColor: inputError ? '#FF7979' : '' }}
     />
-    {inputError && <p style={{ color: 'red' }}>First Name cannot be empty</p>}
+    {inputError && <p className='error-text'>
+        First Name cannot be empty
+      </p>
+    }
+    {/* {inputError && <p style={{ color: 'red' }}>Last Name cannot be empty</p>} */}
     <input 
       type='text'
       placeholder='Last Name'
       value={lastName}
       onChange={(e) => setLastName(e.target.value)}
     />
+    {inputError && <p className='error-text'>
+        Last Name cannot be empty
+      </p>
+    }
     <input 
       type='text'
       placeholder='Email'
       value={email}
       onChange={(e) => setEmail(e.target.value)}    
-      style={emailStyles}
+      // style={emailStyles}
       />
     <input 
       type='password'
